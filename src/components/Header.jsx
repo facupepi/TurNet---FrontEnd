@@ -1,6 +1,7 @@
 import { Navbar, Nav, Container } from 'react-bootstrap';
+import React from 'react';
 import './style.css';
-import turnetLogo from '../img/turnet-white.png';
+import turnetLogo from '../assets/img/turnet-white.png';
 
 const Header = () => {
     return (

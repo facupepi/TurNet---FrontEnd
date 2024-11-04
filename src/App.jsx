@@ -1,23 +1,27 @@
-import { useState } from 'react'
+import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import './App.css'
-import {REQUEST_OPTIONS, API_BASE_URL} from '../config'
 import Login from './components/Login'
 import Home from './components/Home'
 import Header from './components/Header'
 import Register from './components/Register'
+import UserHome from './components/UserHome'
+import { UserProvider } from './contexts/userContext'
 
 function App() {
   return (
     <div>
-      <Router>
-        <Header />
-        <Routes>
-          <Route path='/' element={<Home/>} />
-          <Route path='/login' element={<Login/>} />
-          <Route path='/register' element={<Register/>} />
-        </Routes>
-      </Router>
+        <UserProvider>
+          <Router>
+            <Header />
+            <Routes>
+              <Route path='/' element={<Home/>} />
+              <Route path='/login' element={<Login/>} />
+              <Route path='/user-home' element={<UserHome/>} />
+              <Route path='/register' element={<Register/>} />
+            </Routes>
+          </Router>
+        </UserProvider>
     </div>
   )
 }

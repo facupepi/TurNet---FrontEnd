@@ -17,7 +17,7 @@
 }
 
 .bg-breadcrumb{
-    background-image: url(../img/breadcrumb.png);
+    background-image: url(../assets/img/breadcrumb.png);
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
