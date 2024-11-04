@@ -1,0 +1,43 @@
+:root {
+ --primary: #0011ff;
+ --secondary: #0a115c;
+ --white: #fff;
+}    
+
+.logo  {
+    width: 200px;
+    height: auto;
+}
+
+.bg-blue{
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 5px 15px 5px;
+    border-radius: 15px;
+}
+
+.bg-breadcrumb{
+    background-image: url(../img/breadcrumb.png);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 220px;
+}
+
+
+
+@media (max-width: 750px) {
+    .bg-blue{
+        background-color: var(--primary);
+        color: var(--white);
+        padding: 5px 15px 5px;
+        border-radius: 0px;
+    }
+    .bg-breadcrumb{
+        min-height: 140px;
+    }
+    .logo  {
+        width: 150px;
+        height: auto;
+    }
+  }

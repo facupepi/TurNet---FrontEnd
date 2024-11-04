@@ -1,16 +1,20 @@
-import {Navbar, Nav, Container} from 'react-bootstrap';
+import { Navbar, Nav, Container } from 'react-bootstrap';
+import './style.css';
+import turnetLogo from '../img/turnet-white.png';
 
 const Header = () => {
     return (
         <Navbar bg="dark" variant="dark" expand="lg">
             <Container>
-                <Navbar.Brand href="/">Mi Aplicación</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+                <Navbar.Brand href="/">
+                    <img src={turnetLogo} className="logo" alt="Turnet Logo" />
+                </Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="me-auto">
-                        <Nav.Link href="/">Inicio</Nav.Link>
-                        <Nav.Link href="/login">Iniciar Sesión</Nav.Link>
-                        <Nav.Link href="/register">Registrarse</Nav.Link>
+                    <Nav className="ms-auto"> {/* Esta clase mueve los enlaces al final */}
+                        <Nav.Link href="/">Servicios</Nav.Link>
+                        <Nav.Link href="/login">Mi cuenta</Nav.Link>
+                        <Nav.Link className='bg-blue' href="/#">Reservar</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

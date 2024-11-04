@@ -4,6 +4,7 @@ import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 const Home = () => {
   return (
     <div>
+      <div className='bg-breadcrumb'></div>
       <div className="bg-dark text-white text-center py-5">
         <Container>
           <h1>Bienvenido a Mi Aplicación</h1>
