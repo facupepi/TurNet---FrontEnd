@@ -3,7 +3,7 @@
  --secondary: #0a115c;
  --white: #fff;
  --dark-blue: #0a115c;
- --light-blue: #5681ff;
+ --light-blue: #2f53ff;
 }    
 
 .logo  {
@@ -19,6 +19,9 @@
 }
 .bg-primary-color{
     background-color: var(--primary);
+}
+.bg-light-blue{
+    background-color: var(--light-blue);
 }
 .bg-dark-blue{
     background-color: var(--dark-blue);

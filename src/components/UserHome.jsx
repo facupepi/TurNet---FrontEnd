@@ -76,7 +76,7 @@ const UserHome = () => {
         ) : (
             <>  
 
-                <div className="bg-primary-color text-white text-center py-5 mb-5">
+                <div className="bg-light-blue text-white text-center py-5 mb-5">
                     <h1>Mi Cuenta</h1>
                 </div>
 
