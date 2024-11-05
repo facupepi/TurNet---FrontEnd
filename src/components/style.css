@@ -2,6 +2,8 @@
  --primary: #0011ff;
  --secondary: #0a115c;
  --white: #fff;
+ --dark-blue: #0a115c;
+ --light-blue: #5681ff;
 }    
 
 .logo  {
@@ -15,6 +17,12 @@
     padding: 5px 15px 5px;
     border-radius: 15px;
 }
+.bg-primary-color{
+    background-color: var(--primary);
+}
+.bg-dark-blue{
+    background-color: var(--dark-blue);
+}
 
 .bg-breadcrumb{
     background-image: url(../assets/img/breadcrumb.png);
@@ -24,6 +32,48 @@
     min-height: 220px;
 }
 
+/* Contenedor principal para la imagen y el saludo */
+.robot-container {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Imagen del robot */
+.robot-image {
+    width: 80px; /* Ajusta el tamaño según tu preferencia */
+    height: auto;
+}
+
+/* Estilos de la burbuja de saludo */
+.speech-bubble {
+    margin-right: 10px; /* Espacio entre la burbuja y el robot */
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    color: #333;
+    position: relative;
+    bottom: 30px; /* Ajusta según la altura de tu imagen */
+    right: 10px; /* Ajusta la distancia de la burbuja */
+}
+
+/* Triángulo de la burbuja */
+.speech-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: 10px;
+    left: -10px;
+    width: 0;
+    height: 0;
+    border-right: 10px solid #fff;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+}
 
 
 @media (max-width: 750px) {

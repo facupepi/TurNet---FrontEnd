@@ -3,6 +3,8 @@ import { Container, Row, Col, Card, Button, Alert, ListGroup } from 'react-boots
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../contexts/userContext';
 import {API_BASE_URL, REQUEST_OPTIONS, REQUEST_OPTIONS_GET} from '../../config';
+import robotImage from '../assets/img/robot.png';
+
 
 const UserHome = () => {
     const { user, token } = useContext(UserContext);
@@ -72,7 +74,17 @@ const UserHome = () => {
             Token inválido. Redirigiendo a la página de inicio de sesión...
             </Alert>
         ) : (
-            <>
+            <>  
+
+                <div className="bg-primary-color text-white text-center py-5 mb-5">
+                    <h1>Mi Cuenta</h1>
+                </div>
+
+                <div className="robot-container">
+                    <img src={robotImage} alt="Robot" className="robot-image" />
+                    <div className="speech-bubble">¡Hola, {user.first_name}!</div>
+                </div>
+
                 <Row className="justify-content-md-center">
                     <Col md={8}>
                     <Card className="mb-4">
@@ -90,7 +102,7 @@ const UserHome = () => {
                     </Card>
                     </Col>
                 </Row>
-                <Row>
+                <Row className='container m-auto'>
                     <Col md={12}>
                     <Card className="mb-4">
                         <Card.Body>
