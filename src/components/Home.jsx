@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <div>
       <div className='bg-breadcrumb'></div>
-      <div className="bg-dark text-white text-center py-5">
+      
         <Container>
           <h1>Bienvenido a Mi Aplicación</h1>
           <p>
@@ -13,7 +13,7 @@ const Home = () => {
           </p>
           <Button variant="primary" href="/register">Regístrate</Button>
         </Container>
-      </div>
+      
       <Container className="mt-5">
         <Row>
           <Col md={4}>

@@ -3,6 +3,7 @@ import {Form,Button,Container,Row,Col,Card,Alert} from 'react-bootstrap';
 import {useNavigate} from 'react-router-dom';
 import {UserContext} from '../contexts/userContext';
 import {API_BASE_URL, REQUEST_OPTIONS} from '../../config';
+import robotImage from '../assets/img/robot.png';
 
 const Login = () => {
     const [formErrors,setFormErrors] = useState({});
@@ -51,7 +52,7 @@ const Login = () => {
             
             setUser(result.client); // Guardar la información del usuario en el contexto
             event.target.reset(); // Vaciar el formulario
-            setTimeout(() => navigate('/user-home'), 2000);
+            setTimeout(() => navigate('/user-home'), 1000);
         }).catch((error) => {
             console.error('Error al iniciar sesión:', error);
         });
@@ -85,9 +86,9 @@ const Login = () => {
         <Container className="mt-5">
             <Row className="justify-content-md-center">
                 <Col md={6}>
+                <h1 className="text-center mb-3">Inicia sesión</h1>
                     <Card>
-                        <Card.Body>
-                            <h1 className="text-center">Login</h1>
+                        <Card.Body className='login'>
                             {successMessage && <Alert variant="success" dismissible onClose={() => setSuccessMessage('')}>{successMessage}</Alert>}
                             {Object
                                 .keys(formErrors)
@@ -118,12 +119,19 @@ const Login = () => {
                                 <Button variant="primary" type="submit" className="w-100">
                                     Iniciar Sesión
                                 </Button>
-                                <Button variant="secondary" href="/register" className="w-100 mt-3">No tengo cuenta</Button>
+                                <div className='mt-3 text-center'>
+                                <p>¿No tienes una cuenta? <a href="/register" className="w-100 mt-3">Registrate</a> </p>   
+                                </div>
+
                             </Form>
                         </Card.Body>
                     </Card>
                 </Col>
             </Row>
+            <div className="robot-container">
+                <img src={robotImage} alt="Robot" className="robot-image" />
+                <div className="speech-bubble">Inicia sesión para<br></br>acceder a tu cuenta!</div>
+            </div>
         </Container>
     );
 };

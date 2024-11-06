@@ -2,6 +2,7 @@
     import React from 'react';
     import { Form, Button, Alert, Container, Row, Col, Card } from 'react-bootstrap';
     import { API_BASE_URL, REQUEST_OPTIONS } from '../../config';
+    import robotImage from '../assets/img/robot.png';
 
     function Register() {
     const [successMessage, setSuccessMessage] = useState('');
@@ -106,12 +107,12 @@
     };
 
     return (
-        <Container className="mt-5">
+        <Container className="mt-5 mb-5">
         <Row className="justify-content-md-center">
-            <Col md={10}>
+            <Col md={6}>
+            <h1 className="text-center mb-3">Registrate</h1>
             <Card>
-                <Card.Body>
-                <h1 className="text-center">Registro</h1>
+                <Card.Body className='login'>
                 {successMessage !=='' ? (
                     <div className="text-center">
                     <Alert variant="success">{successMessage}</Alert>
@@ -147,7 +148,9 @@
                             <Form.Control type="password" name="password" placeholder="Ingresa tu contraseña" />
                         </Form.Group>
                         <Button variant="primary" type="submit" className="w-100">Registrarse</Button>
-                        <Button variant="secondary" href="/login" className="w-100 mt-3">Ir a Iniciar Sesión</Button>
+                        <div className='mt-3 text-center'>
+                            <p>¿Tienes una cuenta? <a href="/login" className="w-100 mt-3">Inicia sesión</a> </p>   
+                        </div>
                     </Form>
                     </>
                 )}
@@ -155,6 +158,10 @@
             </Card>
             </Col>
         </Row>
+        <div className="robot-container">
+            <img src={robotImage} alt="Robot" className="robot-image" />
+            <div className="speech-bubble">Registrate para<br></br>acceder a tu cuenta!</div>
+        </div>
         </Container>
     );
     }
