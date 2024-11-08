@@ -39,6 +39,14 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bg-breadcrumb h1{
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--white);
 }
 
 /* Contenedor principal para la imagen y el saludo */
@@ -99,6 +107,30 @@ body {
 .active-link{
     background-color: var(--light-blue) !important;
 }
+
+.card-service{
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    background: var(--white);
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    padding: 30px;
+    gap: 15px;
+}
+.card-service-img{
+    width: 200px;
+    height: 100%;
+    left: 0;
+    border-radius: 8px;
+    object-fit: cover;
+}
+.card-service-body{
+    display: flex;
+    flex-direction: column;
+}
+
+
 
 @media (max-width: 750px) {
     .bg-blue{
