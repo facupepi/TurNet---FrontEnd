@@ -146,4 +146,11 @@ body {
         width: 150px;
         height: auto;
     }
+    .card-service{
+        flex-direction: column;
+    }
+    .card-service-img{
+        width: 100%;
+        height: 200px;
+    }
   }

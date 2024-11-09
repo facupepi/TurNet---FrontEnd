@@ -74,7 +74,7 @@ const UserHome = () => {
                 </Alert>
             ) : (
                 <>
-                    <div className="bg-light-blue text-white text-center py-5 mb-5">
+                    <div className="bg-breadcrumb mb-5">
                         <h1>Mi Cuenta</h1>
                     </div>
 
@@ -82,7 +82,7 @@ const UserHome = () => {
                         <img src={robotImage} alt="Robot" className="robot-image" />
                         <div className="speech-bubble">¡Hola, {user?.first_name}!</div>
                     </div>
-                    <Container>
+                    <Container className='mb-5 pb-5'>
                     <Row>
                         <Col md={3} className="bg-light sidebar">
                             <Nav className="flex-column p-3">
@@ -106,7 +106,7 @@ const UserHome = () => {
                         <Col md={9} className="main-content">
                             {activeSection === 'mi-cuenta' && (
                                 <div>
-                                    <Card className="mb-4">
+                                    <Card className="mb-4 h-100">
                                         <Card.Body>
                                             <form className='p-3'>
                                                 <Row className="mb-3">
