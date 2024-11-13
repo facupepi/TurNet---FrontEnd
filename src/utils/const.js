@@ -1,5 +1,6 @@
 export const REQUEST_OPTIONS = {
     method: "POST",
+    credentials: 'include',
     headers: {
         'Content-Type': 'application/json'
     }
@@ -7,6 +8,7 @@ export const REQUEST_OPTIONS = {
 
 export const REQUEST_OPTIONS_GET = {
     method: "GET",
+    credentials: 'include',
     headers: {
         'Content-Type': 'application/json'
     }

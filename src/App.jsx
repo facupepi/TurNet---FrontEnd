@@ -1,30 +1,52 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import "./App.css";
-import Login from "./components/Login";
+import React, { useContext, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from 'react-router-dom';
 import Home from "./components/Home";
 import Header from "./components/Header";
 import Register from "./components/Register";
-import Reservar from "./components/Reservar";
+import NewBooking from "./components/NewBooking";
 import UserHome from "./components/UserHome";
-import { UserProvider } from "./contexts/userContext";
+import Login from "./components/Login";
+import { UserProvider, UserContext } from "./contexts/userContext";
+import useAuthChecker from './hooks/useAuthChecker';
+
+const AppContent = () => {
+  const { user } = useContext(UserContext);
+  const location = useLocation();
+  const checkAuth = useAuthChecker(); // Hook personalizado para verificar la autenticación
+
+  useEffect(() => {
+      checkAuth();
+  }, [location.pathname]);
+
+  return (
+    <>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<Navigate to="/" />} /> {/* Redirige a / si la ruta no coincide */}
+        {user ? (
+          <>
+            <Route path="/user-home" element={<UserHome />} />
+            <Route path="/new-booking" element={<NewBooking />} />
+          </>
+        ) : (
+          <>
+            <Route path="/register" element={<Register />} />
+          </>
+        )}
+      </Routes>
+    </>
+  );
+};
 
 function App() {
   return (
-    <div>
-      <UserProvider>
-        <Router>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/user-home" element={<UserHome />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/reservar" element={<Reservar />} />
-          </Routes>
-        </Router>
-      </UserProvider>
-    </div>
+    <UserProvider>
+      <Router>
+        <AppContent />
+      </Router>
+    </UserProvider>
   );
 }
 
