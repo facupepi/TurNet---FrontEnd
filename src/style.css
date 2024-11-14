@@ -22,7 +22,10 @@ body {
     width: 200px;
     height: auto;
 }
-
+.color-primary{
+    color: var(--primary);
+    font-weight: 600;
+}
 .bg-blue {
     background-color: var(--primary);
     color: var(--white);
@@ -40,7 +43,7 @@ body {
 }
 
 .bg-breadcrumb {
-    background-image: url("../assets/img/breadcrumb.png");
+    background-image: url("./assets/img/breadcrumb.png");
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -54,7 +57,11 @@ body {
     font-weight: 700;
     color: var(--white);
 }
-
+footer {
+    bottom: 0;
+    width: 100%;
+    margin-top: 100px;
+  }
 /* Contenedor principal para la imagen y el saludo */
 .robot-container {
     position: fixed;
@@ -65,17 +72,29 @@ body {
     z-index: 1000;
 }
 
-/* Imagen del robot */
+/* Imagen del robot con efecto de rebote */
 .robot-image {
     width: 80px;
-    /* Ajusta el tamaño según tu preferencia */
     height: auto;
+    animation: bounce 3s infinite;
 }
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0); /* Posición inicial */
+    }
+    40% {
+        transform: translateY(-20px); /* Rebote hacia arriba */
+    }
+    60% {
+        transform: translateY(-10px); /* Rebote hacia abajo */
+    }
+}
+
 
 /* Estilos de la burbuja de saludo */
 .speech-bubble {
     margin-right: 10px;
-    /* Espacio entre la burbuja y el robot */
     background-color: #fff;
     padding: 10px;
     border-radius: 15px;
@@ -84,9 +103,18 @@ body {
     color: #333;
     position: relative;
     bottom: 30px;
-    /* Ajusta según la altura de tu imagen */
     right: 10px;
-    /* Ajusta la distancia de la burbuja */
+    opacity: 0; /* Inicialmente oculta */
+    animation: toggleBubble 8s infinite; /* Animación para mostrar/ocultar */
+}
+
+@keyframes toggleBubble {
+    0%, 50% {
+        opacity: 1; /* Visible durante la primera mitad del ciclo */
+    }
+    50.1%, 100% {
+        opacity: 0; /* Oculta durante la segunda mitad del ciclo */
+    }
 }
 
 /* Triángulo de la burbuja */
@@ -101,6 +129,7 @@ body {
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
 }
+
 
 /*login*/
 .login.card-body {
@@ -167,6 +196,9 @@ body {
 Calendario  CSS 
 ----------------------------------------
 */
+.w-350{
+    width: 350px;
+}
 .today-day {
     background-color: #007bff; /* Resalta el fondo con color azul */
     color: white; /* Asegura que el texto sea blanco */

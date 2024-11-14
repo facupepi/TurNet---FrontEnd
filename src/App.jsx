@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from 'react-router-dom';
 import Home from "./components/Home";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 import Register from "./components/Register";
 import NewBooking from "./components/NewBooking";
 import UserHome from "./components/UserHome";
@@ -36,6 +37,7 @@ const AppContent = () => {
           </>
         )}
       </Routes>
+      <Footer /> {/* Agregar el Footer aquí */}
     </>
   );
 };

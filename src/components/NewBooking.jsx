@@ -5,6 +5,7 @@ import "../style.css";
 import {UserContext} from "../contexts/userContext";
 import {API_BASE_URL, REQUEST_OPTIONS_GET, REQUEST_OPTIONS} from "../utils/const";
 import {Alert, Form, Row, Col, Container} from "react-bootstrap";
+import robotImage from '../assets/img/robot.png';
 import Loader from "./Loader";
 
 const NewBooking = () => {
@@ -211,96 +212,117 @@ const NewBooking = () => {
     // Maneja el clic en el botón de reserva
     const handleReserveClick = () => setShowConfirmation(true);
 
-    return ( <> {
-        isLoading
-            ? (<Loader/>)
-            : !isTokenValid
-                ? (
-                    <Alert variant="danger" className="text-center">
-                        Token inválido. Redirigiendo a la página de inicio de sesión...
-                    </Alert>
-                )
-                : (
-                    <Container className="mt-5">
-                        <header className="bg-primary text-white text-center py-4 mb-4 rounded">
-                            <h1>Reserva tu Servicio</h1>
-                        </header>
-
-                        <Row className="justify-content-center">
-                            <Col md={6}>
-                                <h3>Selecciona un servicio y una fecha:</h3>
-                                <Form.Group controlId="service-select">
-                                    <Form.Label>Servicio</Form.Label>
-                                    <Form.Control
-                                        as="select"
-                                        onChange={(e) => handleServiceChange(e.target.value)}
-                                        value={selectedService
-                                        ? selectedService.service.id
-                                        : ""}>
-                                        <option value="" disabled>Selecciona un servicio</option>
-                                        {services.map((service) => (
-                                            <option key={service.service.id} value={service.service.id}>{service.service.name}</option>
-                                        ))}
-                                    </Form.Control>
-                                </Form.Group>
-
-                                <div className="mt-4">
-                                    <Calendar
-                                        onChange={handleDateChange}
-                                        tileDisabled={({date}) => !isDayAvailable(date)}/> {selectedDate && (
-                                        <div className="times-container">
-                                            <h4>Horarios disponibles para el {selectedDate}:</h4>
-                                            <div className="times-grid">
-                                                {availableTimes.length > 0
-                                                    ? (availableTimes.map((time) => (
-                                                        <div
-                                                            key={time}
-                                                            className={`time-card ${selectedTime === time
-                                                            ? "selected"
-                                                            : ""}`}
-                                                            onClick={() => handleTimeSelect(time)}>
-                                                            {time}
-                                                        </div>
-                                                    )))
-                                                    : (
-                                                        <p>No hay horarios disponibles para esta fecha.</p>
-                                                    )}
-                                            </div>
-                                            <button
-                                                className="reserve-button"
-                                                disabled={!selectedTime}
-                                                onClick={handleReserveClick}>
-                                                Reservar ahora
-                                            </button>
-                                        </div>
-                                    )}
-                                </div>
-
-                                {showConfirmation && (
-                                    <div className="confirmation-popup">
-                                        <div className="popup-content">
-                                            <h4 className="text-center">Confirmar Reserva</h4>
-                                            <p>Servicio: {selectedService.service.name}</p>
-                                            <p>Día seleccionado: {selectedDate}</p>
-                                            <p>Hora seleccionada: {selectedTime}</p>
-                                            <div className="popup-buttons">
-                                                <button onClick={handleConfirmReservation} className="confirm-button">
-                                                    Confirmar reserva
-                                                </button>
-                                                <button onClick={handleClosePopup} className="cancel-button">
-                                                    Cancelar
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                )}
-                            </Col>
-                        </Row>
-                    </Container>
-                )
-    } 
-    </>
-  );
+    return (
+      <>
+        {isLoading ? (
+          <Loader />
+        ) : !isTokenValid ? (
+          <Alert variant="danger" className="text-center">
+            Token inválido. Redirigiendo a la página de inicio de sesión...
+          </Alert>
+        ) : (
+          <>
+            <div className="bg-breadcrumb mb-5">
+              <h1>Reservar</h1>
+            </div>
+            <div className="robot-container text-center mb-4">
+              <img src={robotImage} alt="Robot" className="robot-image" />
+              <div className="speech-bubble">¡Hola, {user?.first_name || 'Usuario'}!</div>
+            </div>
+    
+            <Container className="mt-5 mb-5">
+              <Row className="justify-content-center">
+                <Col md={6} className="d-flex align-items-center flex-column mb-5">
+                  <h5>Selecciona un servicio y una fecha:</h5>
+                  <Form.Group controlId="service-select">
+                    <Form.Control
+                      className="w-350"
+                      as="select"
+                      onChange={(e) => handleServiceChange(e.target.value)}
+                      value={selectedService ? selectedService.service.id : ""}
+                    >
+                      <option value="" disabled>
+                        Selecciona un servicio
+                      </option>
+                      {services.map((service) => (
+                        <option key={service.service.id} value={service.service.id}>
+                          {service.service.name}
+                        </option>
+                      ))}
+                    </Form.Control>
+                  </Form.Group>
+    
+                  <div className="mt-4">
+                    <Calendar
+                      onChange={handleDateChange}
+                      tileDisabled={({ date }) => !isDayAvailable(date)}
+                    />
+                  </div>
+                  </Col>
+                  <Col md={6}>
+                    {selectedDate && (
+                      <div className="times-container">
+                        <h5>Horarios disponibles para el {selectedDate}:</h5>
+                        <div className="times-grid">
+                          {availableTimes.length > 0 ? (
+                            availableTimes.map((time) => (
+                              <div
+                                key={time}
+                                className={`time-card ${
+                                  selectedTime === time ? "selected" : ""
+                                }`}
+                                onClick={() => handleTimeSelect(time)}
+                              >
+                                {time}
+                              </div>
+                            ))
+                          ) : (
+                            <p>No hay horarios disponibles para esta fecha.</p>
+                          )}
+                        </div>
+                        <button
+                          className="reserve-button"
+                          disabled={!selectedTime}
+                          onClick={handleReserveClick}
+                        >
+                          Reservar ahora
+                        </button>
+                      </div>
+                    )}
+    
+                  {showConfirmation && (
+                    <div className="confirmation-popup">
+                      <div className="popup-content">
+                        <h4 className="text-center">Confirmar Reserva</h4>
+                        <p>Servicio: {selectedService.service.name}</p>
+                        <p>Día seleccionado: {selectedDate}</p>
+                        <p>Hora seleccionada: {selectedTime}</p>
+                        <div className="popup-buttons">
+                          <button
+                            onClick={handleConfirmReservation}
+                            className="confirm-button"
+                          >
+                            Confirmar reserva
+                          </button>
+                          <button
+                            onClick={handleClosePopup}
+                            className="cancel-button"
+                          >
+                            Cancelar
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                       
+                </Col>
+              </Row>
+            </Container>
+          </>
+        )}
+      </>
+    );
+    
 };
 
 export default NewBooking;

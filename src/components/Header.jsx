@@ -42,7 +42,7 @@ const Header = () => {
                         {user ? (
                         <>
                             <Nav.Link onClick={() => navigate('/user-home')}>Mi cuenta</Nav.Link>
-                            <Nav.Link onClick={() => navigate('/new-booking')} className="bg-blue">Reservar</Nav.Link>
+                            <Nav.Link onClick={() => navigate('/new-booking')}>Reservar</Nav.Link>
                             <Nav.Link onClick={handleLogout}>Cerrar Sesión</Nav.Link>
                         </>
                         ) : (

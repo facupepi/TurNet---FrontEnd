@@ -65,7 +65,7 @@ function Register() {
                                     <div className="text-center">
                                         <Alert variant="success">{successMessage}</Alert>
                                         <Link to="/login" className="w-100 mt-3">
-                                            <Button variant="primary" >Ir a Iniciar Sesión</Button>
+                                            <Button variant="primary" >Inicia Sesión</Button>
                                         </Link>
                                         
                                     </div>

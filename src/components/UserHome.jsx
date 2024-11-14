@@ -68,7 +68,7 @@ const UserHome = () => {
                                         className={activeSection === 'turnos' ? 'active-link' : ''}
                                         onClick={() => setActiveSection('turnos')}
                                     >
-                                        Turnos
+                                        Mis Turnos
                                     </Nav.Link>
                                 </Nav>
                             </Col>
@@ -160,7 +160,7 @@ const UserHome = () => {
                                                                 </Table>
                                                             </div>
                                                         ) : (
-                                                            <p className="text-center">No tienes reservas.</p>
+                                                            <p className="text-center">No tienes reservas registradas al momento.</p>
                                                         )}
                                                     </Card.Body>
                                                 </Card>

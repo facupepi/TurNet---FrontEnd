@@ -41,14 +41,16 @@ const Home = () => {
                 services.map(({ service, workSchedules, workDays }) => (
                   <Card key={service.id} className='mb-4'>
                     <Card.Body>
-                      <Card.Title>{service.name}</Card.Title>
+                      <Card.Title className='color-primary text-uppercase'>{service.name}</Card.Title>
                       <Card.Text>
                         <strong>Duración:</strong> {service.duration} minutos<br />
                         <strong>Precio:</strong> ${service.price}<br />
                         <strong>Período de reserva:</strong> {service.reservation_period} días<br />
                         <strong>Días de trabajo:</strong> {workDays.map(day => day.name).join(', ')}<br />
                         <strong>Horarios de trabajo:</strong> {workSchedules.map(schedule => schedule.schedule.time).join(', ')}
+
                       </Card.Text>
+                  
                     </Card.Body>
                   </Card>
                 ))
@@ -69,7 +71,7 @@ const Home = () => {
           (
             <div className="robot-container text-center mb-4">
               <img src={robotImage} alt="Robot" className="robot-image" />
-              <div className="speech-bubble">Inicia sesión o registrate para<br></br>acceder a tu cuenta!</div>
+              <div className="speech-bubble">Inicia sesión o <br></br>registrate para<br></br>acceder a tu cuenta!</div>
             </div>
           )
         }
