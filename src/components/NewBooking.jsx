@@ -7,9 +7,13 @@ import {API_BASE_URL, REQUEST_OPTIONS_GET, REQUEST_OPTIONS} from "../utils/const
 import {Alert, Form, Row, Col, Container} from "react-bootstrap";
 import robotImage from '../assets/img/robot.png';
 import Loader from "./Loader";
+import { useNavigate } from "react-router";
 
 const NewBooking = () => {
+    const navigate = useNavigate(); 
     
+    const [bookingConfirmed, setBookingConfirmed] = useState(false);
+
     // Estado para el servicio seleccionado
     const [selectedService, setSelectedService] = useState(null);
     // Estado para la fecha seleccionada
@@ -25,8 +29,10 @@ const NewBooking = () => {
     // Estado para los servicios disponibles
     const [services, setServices] = useState([]);
 
+    const [loaderSchedule, setLoaderSchedule] = useState(null);
+
     // Obtener el usuario y la validez del token del contexto
-    const {user, isTokenValid} = useContext(UserContext);
+    const {user} = useContext(UserContext);
     // Estado para mostrar el loader
     const [isLoading,setIsLoading] = useState(true);
 
@@ -155,6 +161,7 @@ const NewBooking = () => {
 
     // Maneja el cambio de fecha seleccionada
     const handleDateChange = (date) => {
+      setLoaderSchedule(true);
       // Convertir la fecha a una cadena en formato ISO (YYYY-MM-DD)
       const dateStr = date.toISOString().slice(0, 10);
       // Actualizar el estado con la fecha seleccionada
@@ -164,6 +171,7 @@ const NewBooking = () => {
       fetch(`${API_BASE_URL}/services/${selectedService.service.id}/available-times?date=${dateStr}`, REQUEST_OPTIONS_GET)
         .then((response) => response.json())
         .then((result) => {
+          setLoaderSchedule(false);
           // Si hay horarios disponibles, actualizar el estado con los horarios
           if (result.availableTimes) setAvailableTimes(result.availableTimes);
           // Si no hay horarios disponibles, actualizar el estado con un array vacío
@@ -195,7 +203,9 @@ const NewBooking = () => {
         .then((result) => {
           console.log(result);
           setShowConfirmation(false);
-          // Redirigir o mostrar mensaje de éxito
+          setBookingConfirmed(true);
+          // Redirigir a la página de inicio del usuario
+          setTimeout(() => navigate('/user-home'), 2000);
         })
         .catch((error) => {
           console.error(error);
@@ -214,22 +224,23 @@ const NewBooking = () => {
 
     return (
       <>
+        <div className="bg-breadcrumb mb-5">
+          <h1>Reservar</h1>
+        </div>
+        
+        <div className="robot-container text-center mb-4">
+          <img src={robotImage} alt="Robot" className="robot-image" />
+          <div className="speech-bubble">¡Hola, {user?.first_name || 'Usuario'}!</div>
+        </div>
+
         {isLoading ? (
           <Loader />
-        ) : !isTokenValid ? (
-          <Alert variant="danger" className="text-center">
-            Token inválido. Redirigiendo a la página de inicio de sesión...
+        ) : bookingConfirmed? (
+          <Alert variant="success" className="text-center">
+            Reserva confirmada. Redirigiendo a la página de inicio...
           </Alert>
         ) : (
           <>
-            <div className="bg-breadcrumb mb-5">
-              <h1>Reservar</h1>
-            </div>
-            <div className="robot-container text-center mb-4">
-              <img src={robotImage} alt="Robot" className="robot-image" />
-              <div className="speech-bubble">¡Hola, {user?.first_name || 'Usuario'}!</div>
-            </div>
-    
             <Container className="mt-5 mb-5">
               <Row className="justify-content-center">
                 <Col md={6} className="d-flex align-items-center flex-column mb-5">
@@ -263,30 +274,22 @@ const NewBooking = () => {
                     {selectedDate && (
                       <div className="times-container">
                         <h5>Horarios disponibles para el {selectedDate}:</h5>
-                        <div className="times-grid">
-                          {availableTimes.length > 0 ? (
+                        
+                        {loaderSchedule 
+                          ? <Loader/>
+                          :
+                          <div className="times-grid">
+                          {availableTimes.length > 0 ? 
+                            (
                             availableTimes.map((time) => (
-                              <div
-                                key={time}
-                                className={`time-card ${
-                                  selectedTime === time ? "selected" : ""
-                                }`}
-                                onClick={() => handleTimeSelect(time)}
-                              >
-                                {time}
-                              </div>
-                            ))
-                          ) : (
-                            <p>No hay horarios disponibles para esta fecha.</p>
-                          )}
-                        </div>
-                        <button
-                          className="reserve-button"
-                          disabled={!selectedTime}
-                          onClick={handleReserveClick}
-                        >
-                          Reservar ahora
-                        </button>
+                              <div key={time} className={`time-card ${selectedTime === time ? "selected" : ""}`}onClick={() => handleTimeSelect(time)}>{time}</div>))
+                            ) 
+                            : (<p>No hay horarios disponibles para esta fecha.</p>)
+                          }
+                          </div>
+                        }
+                        
+                        <button className="reserve-button" disabled={!selectedTime} onClick={handleReserveClick}>Reservar ahora</button>
                       </div>
                     )}
     

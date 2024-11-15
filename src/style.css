@@ -1,12 +1,30 @@
 @import url( 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 body {
     font-family: 'Poppins', sans-serif;
-}
-body {
     margin: 0;
     display: flex;
     min-height: 100vh;
+    height: 100%;
     flex-direction: column;
+}
+
+html {
+    margin: 0;
+}
+
+main {
+    flex: 1;
+}
+
+.footer {
+    margin-top: auto;
+    width: 100%;
+}
+
+#root{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 :root {
@@ -16,13 +34,14 @@ body {
     --dark-blue: #0a115c;
     --blue900: #101f9f;
     --light-blue: #d5e7ff;
+
 }
 
 .logo {
     width: 200px;
     height: auto;
 }
-.color-primary{
+.color-primary {
     color: var(--primary);
     font-weight: 600;
 }
@@ -61,7 +80,7 @@ footer {
     bottom: 0;
     width: 100%;
     margin-top: 100px;
-  }
+}
 /* Contenedor principal para la imagen y el saludo */
 .robot-container {
     position: fixed;
@@ -78,19 +97,24 @@ footer {
     height: auto;
     animation: bounce 3s infinite;
 }
-
 @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0); /* Posición inicial */
+    0%,
+    100%,
+    20%,
+    50%,
+    80% {
+        transform: translateY(0);
+        /* Posición inicial */
     }
     40% {
-        transform: translateY(-20px); /* Rebote hacia arriba */
+        transform: translateY(-20px);
+        /* Rebote hacia arriba */
     }
     60% {
-        transform: translateY(-10px); /* Rebote hacia abajo */
+        transform: translateY(-10px);
+        /* Rebote hacia abajo */
     }
 }
-
 
 /* Estilos de la burbuja de saludo */
 .speech-bubble {
@@ -104,16 +128,21 @@ footer {
     position: relative;
     bottom: 30px;
     right: 10px;
-    opacity: 0; /* Inicialmente oculta */
-    animation: toggleBubble 8s infinite; /* Animación para mostrar/ocultar */
+    opacity: 0;
+    /* Inicialmente oculta */
+    animation: toggleBubble 8s infinite;
+    /* Animación para mostrar/ocultar */
 }
-
 @keyframes toggleBubble {
-    0%, 50% {
-        opacity: 1; /* Visible durante la primera mitad del ciclo */
+    0%,
+    50% {
+        opacity: 1;
+        /* Visible durante la primera mitad del ciclo */
     }
-    50.1%, 100% {
-        opacity: 0; /* Oculta durante la segunda mitad del ciclo */
+    100%,
+    50.1% {
+        opacity: 0;
+        /* Oculta durante la segunda mitad del ciclo */
     }
 }
 
@@ -129,7 +158,6 @@ footer {
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
 }
-
 
 /*login*/
 .login.card-body {
@@ -190,20 +218,22 @@ footer {
     }
 }
 
-
 /* 
 ----------------------------------------
 Calendario  CSS 
 ----------------------------------------
 */
-.w-350{
+.w-350 {
     width: 350px;
 }
 .today-day {
-    background-color: #007bff; /* Resalta el fondo con color azul */
-    color: white; /* Asegura que el texto sea blanco */
-    font-weight: bold; /* Destaca el texto */
-  }
+    background-color: #007bff;
+    /* Resalta el fondo con color azul */
+    color: white;
+    /* Asegura que el texto sea blanco */
+    font-weight: bold;
+    /* Destaca el texto */
+}
 :root {
     --primary: #0011ff;
 }
@@ -219,7 +249,6 @@ Calendario  CSS
     flex-direction: column;
     gap: 1.5rem;
 }
-
 @media (min-width: 768px) {
     .calendar-times-wrapper {
         flex-direction: row;
@@ -260,7 +289,6 @@ Calendario  CSS
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
-
 .time-card:hover {
     background-color: var(--primary);
     color: white;
@@ -283,12 +311,10 @@ Calendario  CSS
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
-
 .reserve-button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
 }
-
 .reserve-button:not(:disabled):hover {
     background-color: #0056b3;
 }
@@ -337,7 +363,6 @@ Calendario  CSS
     cursor: pointer;
     transition: background-color 0.3s;
 }
-
 .confirm-button:hover {
     background-color: #0056b3;
 }
@@ -350,7 +375,11 @@ Calendario  CSS
     border-radius: 5px;
     cursor: pointer;
 }
-
 .cancel-button:hover {
     background-color: #bbb;
+}
+
+/* Estilo para evitar clicks en el Mes del calendario y no poder salir de alli */
+.react-calendar__navigation__label {
+    pointer-events: none;
 }
