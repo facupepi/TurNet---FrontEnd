@@ -1,7 +1,6 @@
-import React, {useState, useContext} from 'react';
+import React, {useState} from 'react';
 import {Form,Button,Container,Row,Col,Card,Alert} from 'react-bootstrap';
 import {Link, useNavigate} from 'react-router-dom';
-import {UserContext} from '../contexts/userContext';
 import {API_BASE_URL, REQUEST_OPTIONS} from '../utils/const';
 import robotImage from '../assets/img/robot.png';
 
@@ -10,7 +9,6 @@ import {validateFormLogin} from '../utils/helpers';
 const Login = () => {
     const [formErrors, setFormErrors] = useState({});
     const [successMessage, setSuccessMessage] = useState('');
-    const { setUser, setIsTokenValid } = useContext(UserContext);
     const navigate = useNavigate();
 
     const handleSubmit = (event) => {
@@ -47,10 +45,12 @@ const Login = () => {
             .then((result) => {
                 setSuccessMessage(result.message);
                 setFormErrors({});
-                setIsTokenValid(true); // Actualiza el estado de autenticación
-                setUser(result.client); // Establece el usuario en el contexto
+                //setIsTokenValid(true); // Actualiza el estado de autenticación
+                //setIsAdmin(result.client.role === 'admin'); // Comparación estricta y clara
+                //setUser(result.client); // Establece el usuario en el contexto
                 event.target.reset();
-                setTimeout(() => navigate('/user-home'), 1000);
+                setTimeout(() => navigate(result.client.role === 'admin' ? '/admin-home' : '/user-home'), 2000);
+                
             })
             .catch((error) => {
                 console.error('Error al iniciar sesión:', error);

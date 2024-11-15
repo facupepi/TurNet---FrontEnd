@@ -8,6 +8,7 @@ import {Alert, Form, Row, Col, Container} from "react-bootstrap";
 import robotImage from '../assets/img/robot.png';
 import Loader from "./Loader";
 import { useNavigate } from "react-router";
+import { es } from "date-fns/locale"; // Importar el locale español
 
 const NewBooking = () => {
     const navigate = useNavigate(); 
@@ -221,77 +222,65 @@ const NewBooking = () => {
 
     // Maneja el clic en el botón de reserva
     const handleReserveClick = () => setShowConfirmation(true);
-
     return (
       <>
         <div className="bg-breadcrumb mb-5">
           <h1>Reservar</h1>
         </div>
-        
+    
         <div className="robot-container text-center mb-4">
           <img src={robotImage} alt="Robot" className="robot-image" />
           <div className="speech-bubble">¡Hola, {user?.first_name || 'Usuario'}!</div>
         </div>
-
+    
         {isLoading ? (
           <Loader />
-        ) : bookingConfirmed? (
+        ) : bookingConfirmed ? (
           <Alert variant="success" className="text-center">
             Reserva confirmada. Redirigiendo a la página de inicio...
           </Alert>
-        ) : (
+        ) : services && services.length > 0 ? ( // Validación para mostrar el contenido sólo si hay servicios
           <>
             <Container className="mt-5 mb-5">
               <Row className="justify-content-center">
                 <Col md={6} className="d-flex align-items-center flex-column mb-5">
                   <h5>Selecciona un servicio y una fecha:</h5>
                   <Form.Group controlId="service-select">
-                    <Form.Control
-                      className="w-350"
-                      as="select"
-                      onChange={(e) => handleServiceChange(e.target.value)}
-                      value={selectedService ? selectedService.service.id : ""}
-                    >
-                      <option value="" disabled>
-                        Selecciona un servicio
-                      </option>
+                    <Form.Control className="w-350" as="select" onChange={(e) => handleServiceChange(e.target.value)} value={selectedService ? selectedService.service.id : ""}>
+                      <option value="" disabled>Selecciona un servicio</option>
                       {services.map((service) => (
-                        <option key={service.service.id} value={service.service.id}>
-                          {service.service.name}
-                        </option>
+                        <option key={service.service.id} value={service.service.id}>{service.service.name}</option>
                       ))}
                     </Form.Control>
                   </Form.Group>
     
                   <div className="mt-4">
-                    <Calendar
-                      onChange={handleDateChange}
-                      tileDisabled={({ date }) => !isDayAvailable(date)}
-                    />
+                    <Calendar onChange={handleDateChange} tileDisabled={({ date }) => !isDayAvailable(date)} locale={es}/>
                   </div>
-                  </Col>
-                  <Col md={6}>
-                    {selectedDate && (
-                      <div className="times-container">
-                        <h5>Horarios disponibles para el {selectedDate}:</h5>
-                        
-                        {loaderSchedule 
-                          ? <Loader/>
-                          :
-                          <div className="times-grid">
-                          {availableTimes.length > 0 ? 
-                            (
+
+                </Col>
+                <Col md={6}>
+                  {selectedDate && (
+                    <div className="times-container">
+                      <h5>Horarios disponibles para el {selectedDate}:</h5>
+    
+                      {loaderSchedule ? (<Loader />) : (
+                        <div className="times-grid">
+                          {availableTimes.length > 0 ? (
                             availableTimes.map((time) => (
-                              <div key={time} className={`time-card ${selectedTime === time ? "selected" : ""}`}onClick={() => handleTimeSelect(time)}>{time}</div>))
-                            ) 
-                            : (<p>No hay horarios disponibles para esta fecha.</p>)
-                          }
-                          </div>
-                        }
-                        
-                        <button className="reserve-button" disabled={!selectedTime} onClick={handleReserveClick}>Reservar ahora</button>
-                      </div>
-                    )}
+                              <div
+                                key={time}
+                                className={`time-card ${selectedTime === time ? "selected" : ""}`}
+                                onClick={() => handleTimeSelect(time)}
+                              > {time}</div>
+                            ))
+                          ) : (<p>No hay horarios disponibles para esta fecha.</p>)}
+                        </div>
+                      )}
+    
+                      <button className="reserve-button" disabled={!selectedTime} onClick={handleReserveClick}> Reservar ahora</button>
+                    </div>
+                  )}
     
                   {showConfirmation && (
                     <div className="confirmation-popup">
@@ -301,31 +290,24 @@ const NewBooking = () => {
                         <p>Día seleccionado: {selectedDate}</p>
                         <p>Hora seleccionada: {selectedTime}</p>
                         <div className="popup-buttons">
-                          <button
-                            onClick={handleConfirmReservation}
-                            className="confirm-button"
-                          >
-                            Confirmar reserva
-                          </button>
-                          <button
-                            onClick={handleClosePopup}
-                            className="cancel-button"
-                          >
-                            Cancelar
-                          </button>
+                          <button onClick={handleConfirmReservation} className="confirm-button">Confirmar reserva</button>
+                          <button onClick={handleClosePopup} className="cancel-button">Cancelar</button>
                         </div>
                       </div>
                     </div>
                   )}
-                       
                 </Col>
               </Row>
             </Container>
           </>
+        ) : (
+          // Contenido a mostrar si no hay servicios disponibles
+          <Alert variant="warning" className="text-center">
+            Actualmente no hay servicios disponibles. Por favor, vuelve más tarde.
+          </Alert>
         )}
       </>
     );
-    
 };
 
 export default NewBooking;

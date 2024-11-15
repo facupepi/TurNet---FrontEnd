@@ -37,7 +37,7 @@ const Home = () => {
           <Row className='d-flex align-items-center justify-content-center'>
             <Col md={8}>
               <h2 className='mb-5 text-center'>Conoce todos los servicios disponibles</h2>
-              {services.length > 0 ? (
+              {services && services.length > 0 ? (
                 services.map(({ service, workSchedules, workDays }) => (
                   <Card key={service.id} className='mb-4'>
                     <Card.Body>
