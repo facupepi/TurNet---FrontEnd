@@ -100,3 +100,23 @@ const Login = () => {
 };
 
 export default Login;
+
+{
+/*
+formErrors: Almacena los errores de validación del formulario.
+successMessage: Almacena el mensaje de éxito cuando el inicio de sesión es exitoso.
+handleSubmit:
+
+Previene el comportamiento por defecto del formulario al hacer submit.
+Recopila los datos del formulario (email y password).
+Valida los datos del formulario usando la función validateFormLogin.
+Si hay errores, actualiza el estado formErrors y no procede con la solicitud.
+Si no hay errores, envía los datos al backend usando fetch para realizar una solicitud POST a /login con los datos.
+Si la respuesta es exitosa, muestra un mensaje de éxito y redirige al usuario a su página correspondiente (/admin-home o /user-home) después de 2 segundos.
+En caso de error, muestra los errores obtenidos desde el servidor.
+
+Utiliza componentes de react-bootstrap como Form, Button, Card y Alert para construir una interfaz sencilla y limpia.
+Muestra los errores y el mensaje de éxito mediante el componente Alert.
+Proporciona un enlace a la página de registro si el usuario no tiene cuenta.
+*/
+}

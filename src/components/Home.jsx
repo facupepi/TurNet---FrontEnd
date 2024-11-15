@@ -82,3 +82,23 @@ const Home = () => {
 };
 
 export default Home;
+
+{
+/*
+services: Un arreglo que almacenará los servicios obtenidos de la API.
+isLoading: Un estado booleano que indica si los datos aún están siendo cargados desde la API.
+Uso de useEffect:
+
+El useEffect se ejecuta cuando el componente se monta ([] como dependencia, lo que significa que solo se ejecutará una vez).
+Realiza una solicitud GET a la API para obtener los servicios disponibles y actualiza el estado services con la respuesta. Al finalizar la carga, el estado isLoading se actualiza a false.
+Si ocurre un error durante la solicitud, se captura y se maneja el error, asegurando que isLoading también se actualice a false.
+
+Condicional de Carga (isLoading):Mientras isLoading es true, se muestra el componente Loader (presumiblemente un spinner o indicador de carga).
+
+Una vez que isLoading es false, se renderiza una lista de servicios utilizando el componente Card de react-bootstrap. Cada servicio incluye detalles como nombre, duración, precio, días de trabajo y horarios.
+
+Si el usuario está autenticado (esto se verifica mediante el contexto UserContext), se muestra un mensaje personalizado dentro de una burbuja de diálogo (speech-bubble), saludando al usuario.
+Si no hay usuario autenticado, se muestra un mensaje invitando al usuario a iniciar sesión o registrarse.
+*/
+
+}

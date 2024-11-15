@@ -70,14 +70,8 @@ const AdminHome = () => {
             reservation_period: Number(newService.reservation_period)
         };
 
-        // Si la validación pasa, se envían los datos al backend
-        const requestOptions = {
-            ...REQUEST_OPTIONS,
-            body: JSON.stringify(serviceData),
-            credentials: 'include'
-        };
 
-        fetch(`${API_BASE_URL}/services`, requestOptions)
+        fetch(`${API_BASE_URL}/services`, {...REQUEST_OPTIONS, body: JSON.stringify(serviceData)})
             .then((response) => response.json())
             .then((result) => {
                 setServices([...services, result.service]);
@@ -126,6 +120,10 @@ const AdminHome = () => {
                     <Loader />
                 ) : (
                     <Row>
+                        <div className="robot-container text-center mb-4">
+                            <img src={robotImage} alt="Robot" className="robot-image" />
+                            <div className="speech-bubble">¡Hola, {user?.first_name || 'Usuario'}!</div>
+                        </div>
                         <Col md={3} className="bg-light sidebar">
                             <Nav className="flex-column p-3">
                                 <Nav.Link
@@ -344,3 +342,33 @@ const AdminHome = () => {
 };
 
 export default AdminHome;
+
+{
+/*
+Navegación de la Barra Lateral:
+
+La barra lateral permite al administrador navegar entre tres secciones:
+Mi Cuenta: Muestra la información personal del administrador.
+Reservas: Muestra una tabla con las reservas.
+Crear Servicio: Formulario para crear un nuevo servicio.
+Gestión de Estado:
+
+Se gestionan estados como bookings (reservas), services (servicios), newService (nuevo servicio), y alert (alertas) mediante useState.
+
+isLoading controla el spinner de carga para indicar cuando la aplicación está obteniendo datos.
+API Fetch para Servicios y Reservas:
+
+Al montar el componente (useEffect), se obtienen los servicios desde el servidor y se guardan en el estado.
+La función handleSectionChange obtiene los datos de las reservas cuando se selecciona la sección "reservas".
+Formulario para Crear Servicio:
+
+Se proporciona un formulario para crear un nuevo servicio. La función handleCreateService valida los datos de entrada y envía una solicitud al servidor para crear el servicio.
+Si tiene éxito, actualiza la lista de servicios y muestra una alerta.
+Alertas:
+
+Las alertas se muestran según el éxito o fracaso de las operaciones y son descartables por el usuario.
+Información del Usuario:
+
+Se muestra la información del administrador (nombre, correo electrónico, teléfono) en la sección "Mi Cuenta".
+*/
+}

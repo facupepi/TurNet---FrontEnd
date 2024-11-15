@@ -178,3 +178,22 @@ const UserHome = () => {
 };
 
 export default UserHome;
+
+{
+/*
+El componente UserHome es una página que presenta un panel personalizado para el usuario autenticado. Este incluye dos secciones principales: "Mi Cuenta" y "Mis Turnos", que se alternan mediante una barra de navegación lateral.
+
+Datos del usuario:
+En la sección "Mi Cuenta", se muestra la información personal del usuario (nombre, apellido, correo y teléfono) en un formulario deshabilitado para evitar modificaciones directas.
+
+Reservas del usuario:
+En la sección "Mis Turnos", se listan las reservas del usuario en una tabla que incluye la fecha, hora, servicio y precio. Si no hay reservas, se informa al usuario.
+
+Carga de datos y control de acceso:
+
+Utiliza el contexto global (UserContext) para acceder a los datos del usuario y verificar su autenticidad.
+Las reservas del usuario se cargan al montar el componente mediante una solicitud a la API. Si el token es inválido, el usuario es redirigido a la página de inicio de sesión.
+
+Mientras se obtienen los datos, se muestra un componente de carga (Loader) para mejorar la experiencia del usuario.
+*/
+}

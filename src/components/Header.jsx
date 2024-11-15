@@ -97,3 +97,29 @@ const Header = () => {
 };
 
 export default Header;
+
+
+{
+
+/*
+Estado del Componente:
+
+Utiliza useContext para acceder al contexto UserContext, que contiene el estado de autenticación del usuario (user, isAdmin, isTokenValid, etc.).
+Dependiendo de si el usuario está autenticado y si es un administrador (isAdmin), se renderizan diferentes enlaces de navegación.
+
+Condicional de Navegación:
+
+Si el usuario está autenticado como administrador (isAdmin === true), se muestran enlaces para acceder a Home, Servicios y cerrar sesión (Cerrar Sesión).
+Si el usuario está autenticado pero no es administrador (isAdmin === false), se muestran enlaces para Mi cuenta, Servicios, Reservar y cerrar sesión.
+Si el usuario no está autenticado, se muestran los enlaces para iniciar sesión (Iniciar Sesión) y registrarse (Registrarse).
+Función handleLogout:
+
+Cuando el usuario hace clic en "Cerrar Sesión", se hace una solicitud fetch al backend para eliminar la cookie de sesión.
+Si la solicitud es exitosa, se actualiza el contexto de usuario (se elimina el usuario del estado y se invalidan los datos de autenticación).
+Luego, se redirige al usuario a la página de login.
+Uso de useNavigate:
+
+Se utiliza useNavigate de react-router-dom para redirigir a diferentes rutas dependiendo de la acción que el usuario realice (por ejemplo, al hacer clic en el logo o en los enlaces de navegación).
+
+*/
+}

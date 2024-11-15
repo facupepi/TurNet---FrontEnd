@@ -127,3 +127,23 @@ function Register() {
 }
 
 export default Register;
+
+{
+/*
+El componente Register es una página de registro de usuario donde los usuarios pueden crear una cuenta proporcionando su nombre, apellido, teléfono, correo electrónico y una contraseña.
+
+successMessage: Almacena un mensaje de éxito tras un registro exitoso.
+formErrors: Guarda los errores de validación del formulario, si los hubiera.
+
+Al enviarse el formulario, se recoge la información utilizando FormData y se valida mediante la función validateFormRegister.
+
+Si hay errores, se muestran en un alerta de tipo danger.
+Si la validación es exitosa, los datos se envían al servidor mediante una petición fetch a la API (/clients). Si la respuesta es exitosa, se muestra un mensaje de éxito y se limpia el formulario.
+
+Si el registro es exitoso, se muestra un mensaje de éxito con un botón que redirige a la página de inicio de sesión.
+Si hay errores en el formulario, se muestran como un alerta en la parte superior de la página.
+
+También hay un enlace para redirigir al usuario a la página de inicio de sesión si ya tiene una cuenta.
+
+*/
+}

@@ -64,3 +64,17 @@ function App() {
 }
 
 export default App;
+
+{
+  /*
+  El código implementa React Router para el enrutamiento dinámico basado en roles y autenticación, gestionados mediante un contexto global (UserContext) y un hook personalizado (useAuthChecker). Este hook verifica el estado de autenticación del usuario al navegar, actualizando los datos del usuario, su rol y la validez del token en el contexto.
+
+  Las rutas se renderizan condicionalmente según el estado del usuario:
+
+    Usuarios no autenticados solo acceden a las páginas de inicio, login y registro.
+    
+    Usuarios normales acceden a rutas como /user-home.
+
+    Administradores tienen acceso exclusivo a rutas como /admin-home.
+  */
+}

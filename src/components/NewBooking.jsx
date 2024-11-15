@@ -311,3 +311,39 @@ const NewBooking = () => {
 };
 
 export default NewBooking;
+
+{
+/*
+Gestión del Estado: Se utilizan varios estados para gestionar:
+
+selectedService: El servicio elegido por el usuario.
+selectedDate: La fecha seleccionada por el usuario.
+availableTimes: Los horarios disponibles para la fecha seleccionada.
+selectedTime: El horario seleccionado por el usuario.
+availableDates: Una lista de fechas disponibles para la reserva.
+services: Una lista de servicios disponibles.
+bookingConfirmed: Si la reserva fue confirmada exitosamente.
+loaderSchedule: Si los horarios están siendo cargados.
+showConfirmation: Si se muestra la ventana de confirmación para la reserva.
+isLoading: Si los datos todavía se están cargando.
+
+Obtención de Servicios: Al montar el componente, se obtiene la lista de servicios disponibles desde un API (/services). Los servicios se muestran en un desplegable, permitiendo al usuario seleccionar uno.
+
+Selección de Fecha con el Calendario: el usuario selecciona una fecha usando el componente react-calendar.
+
+La función isDayAvailable verifica si un día específico está disponible para la reserva, basado en el horario de trabajo del servicio y el período de reserva.
+
+convertWorkDaysToDates convierte los días de trabajo del servicio (por ejemplo, lunes, miércoles) en fechas específicas disponibles para la reserva dentro de un período de reserva definido.
+
+Selección de Horario: Una vez que se selecciona una fecha, los horarios disponibles para esa fecha se obtienen desde el servidor (/services/{serviceId}/available-times?date={date}). Los horarios disponibles se muestran en una cuadrícula, y el usuario puede seleccionar uno.
+
+Confirmación de la Reserva: Después de seleccionar un horario, el usuario puede confirmar su reserva a través de una ventana emergente. Si la reserva es exitosa, el usuario es redirigido a su página de inicio después de un breve retraso.
+
+Carga de Datos: Mientras los datos están siendo obtenidos o cuando los horarios están siendo cargados, se muestra un indicador de carga (Loader) para informar al usuario.
+
+Manejo de Errores y Estados Vacíos:
+
+Si no hay servicios disponibles, se muestra una alerta para informar al usuario.
+Si no se encuentran horarios disponibles para la fecha seleccionada, se muestra un mensaje indicando que no hay horarios disponibles.
+*/
+}
