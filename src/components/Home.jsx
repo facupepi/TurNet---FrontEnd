@@ -5,6 +5,7 @@ import { API_BASE_URL, REQUEST_OPTIONS_GET } from "../utils/const";
 import Loader from './Loader';
 import { UserContext } from '../contexts/userContext';
 import robotImage from '../assets/img/robot.png';
+import banner from '../assets/img/banner.png';
 
 const Home = () => {
   const [services, setServices] = useState([]);
@@ -30,13 +31,14 @@ const Home = () => {
         <h1>TURNET</h1>
       </div>
       
-      <Container className="mt-5 mb-5">
+      <Container className="mb-5">
         {isLoading ? (
           <Loader />
         ) : (
           <Row className='d-flex align-items-center justify-content-center'>
             <Col md={8}>
-              <h2 className='mb-5 text-center'>Conoce todos los servicios disponibles</h2>
+            <img src={banner} className='banner-img' alt="banner" />
+              <h2 className='mt-5 mb-5 text-center'>Conoce todos los servicios disponibles</h2>
               {services && services.length > 0 ? (
                 services.map(({ service, workSchedules, workDays }) => (
                   <Card key={service.id} className='mb-4'>

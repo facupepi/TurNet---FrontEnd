@@ -97,6 +97,12 @@ footer {
     height: auto;
     animation: bounce 3s infinite;
 }
+.banner-img{
+    width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+    mask-image: linear-gradient(black 98%, transparent);
+}
 @keyframes bounce {
     0%,
     100%,
