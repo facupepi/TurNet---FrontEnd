@@ -54,12 +54,12 @@ const NewBooking = () => {
       const maxDate = new Date(); 
       // Establecer la fecha máxima sumando el período de reserva
       maxDate.setDate(today.getDate() + reservationPeriod - 1); 
-
+    
       // Array para almacenar las fechas disponibles
       const dates = []; 
       // Mapeo de los días de la semana a sus valores numéricos
-      const dayMapping = { "lunes": 1, "martes": 2, "miércoles": 3, "jueves": 4, "viernes": 5, "sábado": 6, "domingo": 0 };
-
+      const dayMapping = { "lunes": 0, "martes": 1, "miércoles": 2, "jueves": 3, "viernes": 4, "sábado": 5, "domingo": 6 };
+    
       // Iterar desde hoy hasta la fecha máxima
       for (let day = today; day <= maxDate; day.setDate(day.getDate() + 1)) {
         const weekday = day.getDay(); // Obtener el día de la semana actual
@@ -67,9 +67,7 @@ const NewBooking = () => {
         // Verificar si el día de la semana actual está en los días de trabajo
         if (workDays.some(workDay => dayMapping[workDay.toLowerCase()] === weekday)) {
           // Si el día de la semana actual está en los días de trabajo, agregar la fecha al array
-
-          //Some se utiliza para verificar si al menos uno de los elementos en el array workDays cumple con una condición específica. En este caso, la condición es que el día de la semana actual (weekday) coincida con uno de los días de trabajo (workDay) después de haber sido mapeado a su valor numérico correspondiente.
-
+    
           // Agregar la fecha en formato ISO
           dates.push(new Date(day).toISOString().slice(0, 10)); 
         }
